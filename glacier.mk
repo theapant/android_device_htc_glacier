@@ -27,7 +27,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     device/htc/glacier/init.glacier.rc:root/init.glacier.rc \
-    device/htc/vision/ueventd.vision.rc:root/ueventd.glacier.rc
+    device/htc/glacier/ueventd.glacier.rc:root/ueventd.glacier.rc
 
 ## (2) Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/glacier/glacier-vendor.mk)
