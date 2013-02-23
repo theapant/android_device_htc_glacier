@@ -72,7 +72,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := glacier
 
 # Inline kernel building
 TARGET_KERNEL_SOURCE := kernel/htc/msm7x30
-TARGET_KERNEL_CONFIG := glacier_cm10_defconfig
+TARGET_KERNEL_CONFIG := evervolv_glacier_defconfig
 BUILD_KERNEL := true
 KERNEL_TOOLCHAIN_PREFIX:=$(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-
 
