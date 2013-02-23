@@ -1,5 +1,4 @@
 # Configuration files
-etc/agps_rm
 etc/vpimg
 
 # Executable files

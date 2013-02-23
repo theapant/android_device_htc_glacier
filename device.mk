@@ -14,8 +14,8 @@
 # limitations under the License.
 #
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+# common msm7x30 configs
+$(call inherit-product, device/htc/msm7x30-common/msm7x30.mk)
 
 # The gps config appropriate for this device
 PRODUCT_COPY_FILES += \
@@ -25,10 +25,9 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     device/htc/glacier/ramdisk/init.glacier.rc:root/init.glacier.rc \
-    device/htc/glacier/ramdisk/ueventd.glacier.rc:root/ueventd.glacier.rc
-
-## (2) Also get non-open-source GSM-specific aspects if available
-$(call inherit-product-if-exists, vendor/htc/glacier/device-vendor.mk)
+    device/htc/glacier/ramdisk/ueventd.glacier.rc:root/ueventd.glacier.rc \
+    device/htc/glacier/ramdisk/fstab.glacier:root/fstab.glacier \
+    device/htc/glacier/ramdisk/zram.sh:root/sbin/zram.sh
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -77,20 +76,20 @@ PRODUCT_COPY_FILES += \
     device/htc/glacier/prebuilt/firmware/default_org.acdb:system/etc/firmware/default_org.acdb \
     device/htc/glacier/prebuilt/firmware/default_org_WA.acdb:system/etc/firmware/default_org_WA.acdb
 
+# media config xml file
+PRODUCT_COPY_FILES += \
+    device/htc/glacier/prebuilt/media_profiles.xml:system/etc/media_profiles.xml \
+    device/htc/glacier/prebuilt/audio_policy.conf:system/etc/audio_policy.conf \
+    device/htc/glacier/prebuilt/media_codecs.xml:system/etc/media_codecs.xml	
+
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
+
 # Vold
 PRODUCT_COPY_FILES += \
     device/htc/glacier/prebuilt/vold.fstab:system/etc/vold.fstab
 
-# High-density art, but English locale
-PRODUCT_LOCALES += en
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
-
-# stuff common to all HTC phones
-$(call inherit-product, device/htc/common/common.mk)
-
-# common msm7x30 configs
-$(call inherit-product, device/htc/msm7x30-common/msm7x30.mk)
+# device specific props
+$(call inherit-product-if-exists, vendor/htc/glacier/device-vendor.mk)
 
 # media profiles and capabilities spec
 $(call inherit-product, device/htc/glacier/media_a1026.mk)
@@ -98,4 +97,8 @@ $(call inherit-product, device/htc/glacier/media_a1026.mk)
 # htc audio settings
 $(call inherit-product, device/htc/glacier/media_htcaudio.mk)
 
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
+
+PRODUCT_NAME := htc_glacier
+PRODUCT_DEVICE := glacier
