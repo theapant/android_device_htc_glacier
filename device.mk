@@ -21,15 +21,14 @@ $(call inherit-product, device/htc/msm7x30-common/msm7x30.mk)
 PRODUCT_COPY_FILES += \
     device/htc/glacier/prebuilt/gps.conf:system/etc/gps.conf
 
-## (1) First, the most specific values, i.e. the aspects that are specific to GSM
-
+# Ramsidk
 PRODUCT_COPY_FILES += \
     device/htc/glacier/ramdisk/init.glacier.rc:root/init.glacier.rc \
     device/htc/glacier/ramdisk/ueventd.glacier.rc:root/ueventd.glacier.rc \
     device/htc/glacier/ramdisk/fstab.glacier:root/fstab.glacier \
     device/htc/glacier/ramdisk/zram.sh:root/sbin/zram.sh
 
-## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
+# Build.prop additions
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
     ro.com.google.networklocation=1 \
@@ -49,6 +48,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/glacier/prebuilt/voicemail-conf.xml:system/etc/voicemail-conf.xml
 
+# Hal
 PRODUCT_PACKAGES += \
     lights.glacier \
     sensors.glacier \
@@ -59,15 +59,15 @@ PRODUCT_COPY_FILES += \
     device/htc/glacier/prebuilt/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
     device/htc/glacier/prebuilt/keylayout/glacier-keypad.kl:system/usr/keylayout/glacier-keypad.kl
 
+# Keychars
+PRODUCT_COPY_FILES += \
+    device/htc/glacier/prebuilt/keychars/glacier-keypad.kcm.bin:system/usr/keychars/glacier-keypad.kcm.bin
+
 # IDC Files
 PRODUCT_COPY_FILES += \
     device/htc/glacier/prebuilt/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
     device/htc/glacier/prebuilt/idc/glacier-keypad.idc:system/usr/idc/glacier-keypad.idc \
     device/htc/glacier/prebuilt/idc/curcial-oj.idc:system/usr/idc/curcial-oj.idc \
-
-# Keychars
-PRODUCT_COPY_FILES += \
-    device/htc/glacier/prebuilt/keychars/glacier-keypad.kcm.bin:system/usr/keychars/glacier-keypad.kcm.bin
 
 # Firmware
 PRODUCT_COPY_FILES += \
@@ -78,10 +78,12 @@ PRODUCT_COPY_FILES += \
 
 # media config xml file
 PRODUCT_COPY_FILES += \
+    device/htc/glacier/audio_policy.conf:system/etc/audio_policy.conf \
     device/htc/glacier/prebuilt/media_profiles.xml:system/etc/media_profiles.xml \
     device/htc/glacier/prebuilt/media_codecs.xml:system/etc/media_codecs.xml	
 
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
+# Wifi firmware
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
 
 # Vold
 PRODUCT_COPY_FILES += \
@@ -90,11 +92,9 @@ PRODUCT_COPY_FILES += \
 # device specific props
 $(call inherit-product-if-exists, vendor/htc/glacier/device-vendor.mk)
 
-# media profiles and capabilities spec
-$(call inherit-product, device/htc/glacier/media_a1026.mk)
-
 # htc audio settings
 $(call inherit-product, device/htc/glacier/media_htcaudio.mk)
+$(call inherit-product, device/htc/glacier/media_a1026.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
