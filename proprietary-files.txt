@@ -1,10 +1,6 @@
-# Configuration files
-etc/vpimg
-
 # Executable files
 bin/akmd
 bin/awb_camera
-bin/bma150_usr
 bin/lsc_camera
 bin/rmt_storage
 
