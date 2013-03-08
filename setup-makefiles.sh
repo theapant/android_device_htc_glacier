@@ -22,7 +22,9 @@ MAKEFILE=../../../$OUTDIR/device-vendor-blobs.mk
 
 # Prebuilt libraries that are needed to build open-source libraries
 PRODUCT_COPY_FILES += \\
-  $OUTDIR/proprietary/lib/libaudioalsa.so:obj/lib/libaudioalsa.so
+  $OUTDIR/proprietary/lib/libaudioalsa.so:obj/lib/libaudioalsa.so \\
+  $OUTDIR/proprietary/lib/libv8.so:obj/lib/libv8.so \\
+  $OUTDIR/proprietary/lib/libqc-opt.so:obj/lib/libqc-opt.so
 
 PRODUCT_COPY_FILES += \\
 EOF
