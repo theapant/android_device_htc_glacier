@@ -47,7 +47,6 @@ PRODUCT_COPY_FILES += \
 
 # gsm config xml file
 PRODUCT_COPY_FILES += \
-    device/htc/glacier/prebuilt/apns-conf.xml:system/etc/apns-conf.xml \
     device/htc/glacier/prebuilt/voicemail-conf.xml:system/etc/voicemail-conf.xml
 
 # Hal
