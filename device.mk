@@ -72,7 +72,7 @@ PRODUCT_COPY_FILES += \
 
 # Firmware
 PRODUCT_COPY_FILES += \
-    device/htc/glacier/prebuilt/firmware/bcm4329.hcd:system/etc/firmware/bcm4329.hcd \
+    device/htc/glacier/prebuilt/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd \
     device/htc/glacier/prebuilt/firmware/default.acdb:system/etc/firmware/default.acdb \
     device/htc/glacier/prebuilt/firmware/default_org.acdb:system/etc/firmware/default_org.acdb \
     device/htc/glacier/prebuilt/firmware/default_org_WA.acdb:system/etc/firmware/default_org_WA.acdb
