@@ -106,9 +106,11 @@ on boot
     write /sys/block/mmcblk0/bdi/read_ahead_kb 1024
     write /sys/block/mmcblk1/bdi/read_ahead_kb 1024
 
-    # CPU frequency scaling
-    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
-    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
+    # Boostpulse
+    chown root.system /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
+    chmod 664 /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
+    chown root.system /sys/devices/system/cpu/cpufreq/interactive/boostpulse
+    chmod 664 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
