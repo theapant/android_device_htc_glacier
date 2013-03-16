@@ -86,6 +86,10 @@ PRODUCT_COPY_FILES += \
 # Wifi firmware
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
 
+# Wifi init script
+PRODUCT_COPY_FILES += \
+    device/htc/glacier/prebuilt/init_wlan.sh:system/etc/init_wlan.sh
+
 # Vold
 PRODUCT_COPY_FILES += \
     device/htc/glacier/prebuilt/vold.fstab:system/etc/vold.fstab
